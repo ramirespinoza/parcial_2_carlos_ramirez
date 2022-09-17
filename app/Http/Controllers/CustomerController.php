@@ -38,13 +38,7 @@ class CustomerController extends Controller
 
         return $customers;
     }
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index() 
     {
         $customers = Customer::orderBy('id', 'DESC')->get();
@@ -71,7 +65,7 @@ class CustomerController extends Controller
 
         return response()->json([
             'customer' => $request->all(),
-            'operation' => 'store',
+            'operation' => 'save',
             'status' => 'successful',
             'code' => '1'
         ]);
@@ -115,13 +109,6 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
 
         $customer->delete();
-
-        return response()->json([
-            'customer' => $request->all(),
-            'operation' => 'delete',
-            'status' => 'successful',
-            'code' => '1'
-        ]);
     }
 }
 
